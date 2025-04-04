@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #1f2c3b, #5c5470)',
+      backgroundImage: 'url("/bg.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -18,13 +20,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
-      <h1 style={{ fontSize: '2rem', color: '#fff', marginBottom: '1rem' }}>
+      <h1 style={{
+        fontSize: '2rem',
+        color: '#fff',
+        marginBottom: '1rem',
+        textShadow: '1px 1px 6px rgba(0,0,0,0.7)'
+      }}>
         🎵 Hikayeni Anlat, Şarkın Olsun
       </h1>
 
       <form name="contact" method="POST" data-netlify="true"
         style={{
-          backgroundColor: '#ffffffdd',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
           padding: '24px',
           borderRadius: '16px',
           width: '100%',
@@ -53,13 +60,14 @@ export default function Home() {
 
       <div style={{
         marginTop: '30px',
-        backgroundColor: '#ffffff22',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         borderRadius: '12px',
         padding: '16px',
         width: '100%',
         maxWidth: '400px',
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        backdropFilter: 'blur(5px)'
       }}>
         <h3>🎧 Örnek Şarkı</h3>
         <audio controls style={{ width: '100%' }}>
