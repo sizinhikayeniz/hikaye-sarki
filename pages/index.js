@@ -29,7 +29,10 @@ export default function Home() {
       }}>
         <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem', textAlign: 'center' }}>🎵 Hikayeni Anlat, Şarkın Olsun</h1>
 
-        <form name="contact" method="POST" action="/api/submit" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form action="https://formsubmit.co/seninmail@adresin.com" method="POST" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <input type="hidden" name="_captcha" value="false" />
+         <input type="hidden" name="_subject" value="Yeni Form Mesajı!" />
+         <input type="hidden" name="_template" value="table" />
           <input name="name" placeholder="Adınız" required style={inputStyle} />
           <input name="email" type="email" placeholder="E-posta" required style={inputStyle} />
           <textarea name="story" placeholder="Tanışma hikayeniz" rows="4" required style={inputStyle}></textarea>
