@@ -1,90 +1,49 @@
 
-import { useState } from 'react';
+import Head from 'next/head';
 
 export default function Home() {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    story: '',
-    specialNotes: ''
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Hikayen başarıyla gönderildi! En kısa sürede sana dönüş yapılacak.');
-    setForm({ name: '', email: '', story: '', specialNotes: '' });
-  };
-
   return (
     <div style={{
+      background: 'linear-gradient(to bottom right, #fbc2eb, #a6c1ee)',
       minHeight: '100vh',
-      background: 'linear-gradient(to right, #ff9a9e, #fad0c4)',
-      padding: '2rem',
-      fontFamily: 'Arial, sans-serif',
-      color: '#333'
+      padding: '40px',
+      fontFamily: 'Arial, sans-serif'
     }}>
-      <h1 style={{ fontSize: '2.5rem', textAlign: 'center' }}>🎵 Hikayeni Anlat, Şarkın Olsun 🎶</h1>
-      <p style={{ textAlign: 'center', maxWidth: '600px', margin: '1rem auto' }}>
-        Tanışma hikayenizi paylaşın, sizin için özel bir şarkı yapayım.
+      <Head>
+        <title>Hikayeni Anlat, Şarkın Olsun</title>
+        <meta name="description" content="Tanışma hikayeni paylaş, sana özel bir şarkı yapılsın!" />
+      </Head>
+
+      <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#2d2d2d' }}>
+        Hikayeni Anlat, Şarkın Olsun <span style={{ color: '#6a0dad' }}>🎵</span>
+      </h1>
+
+      <p style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>
+        Tanışma hikayenizi paylaşın, size özel bir şarkı yapayım.
       </p>
-      <div style={{ maxWidth: '600px', margin: '2rem auto', background: '#fff', padding: '2rem', borderRadius: '1rem', boxShadow: '0 0 20px rgba(0,0,0,0.1)' }}>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='name'
-            placeholder='Adınız'
-            value={form.name}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.8rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid #ccc' }}
-          />
-          <input
-            type='email'
-            name='email'
-            placeholder='E-posta adresiniz'
-            value={form.email}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.8rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid #ccc' }}
-          />
-          <textarea
-            name='story'
-            placeholder='Tanışma hikayenizi yazın...'
-            rows='5'
-            value={form.story}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '0.8rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid #ccc' }}
-          />
-          <textarea
-            name='specialNotes'
-            placeholder='Şarkıda geçmesini istediğiniz özel bir şey var mı?'
-            rows='3'
-            value={form.specialNotes}
-            onChange={handleChange}
-            style={{ width: '100%', padding: '0.8rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid #ccc' }}
-          />
-          <button type='submit' style={{
-            width: '100%',
-            backgroundColor: '#ff6f91',
-            color: '#fff',
-            padding: '1rem',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '1rem',
-            cursor: 'pointer'
-          }}>Gönder</button>
-        </form>
-      </div>
-      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-        <h2>🎧 Örnek Şarkı</h2>
-        <audio controls>
-          <source src='/sarki.mp3' type='audio/mpeg' />
-          Tarayıcınız bu ses öğesini desteklemiyor.
+
+      <form style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        maxWidth: '500px',
+        background: '#fff',
+        padding: '20px',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+      }} name="hikayeForm" method="POST" data-netlify="true">
+        <input name="ad" placeholder="Adınız" required />
+        <input name="email" placeholder="E-posta" type="email" required />
+        <textarea name="hikaye" placeholder="Tanışma hikayeniz" rows={4} required />
+        <textarea name="ozel" placeholder="Şarkıda yer almasını istediğiniz özel bir şey var mı?" rows={2} />
+        <button type="submit">Gönder</button>
+      </form>
+
+      <div style={{ marginTop: '40px' }}>
+        <h3>🎧 Örnek Şarkı</h3>
+        <audio controls style={{ width: '100%', maxWidth: '400px' }}>
+          <source src="/sarki.mp3" type="audio/mpeg" />
+          Tarayıcınız ses oynatmayı desteklemiyor.
         </audio>
       </div>
     </div>
