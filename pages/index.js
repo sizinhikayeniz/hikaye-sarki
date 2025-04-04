@@ -3,71 +3,80 @@ import Head from 'next/head';
 
 export default function Home() {
   return (
-    <>
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #1f2c3b, #5c5470)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'Arial, sans-serif',
+      padding: '20px'
+    }}>
       <Head>
         <title>Hikayeni Anlat, Şarkın Olsun</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div style={{
-        minHeight: '100vh',
-        background: 'linear-gradient(to bottom right, #0f2027, #203a43, #2c5364)',
-        padding: '2rem',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        fontFamily: 'Arial, sans-serif',
-        color: '#fff'
-      }}>
-        <h1 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '1rem' }}>
-          🎵 Hikayeni Anlat, Şarkın Olsun
-        </h1>
+      
+      <h1 style={{ fontSize: '2rem', color: '#fff', marginBottom: '1rem' }}>
+        🎵 Hikayeni Anlat, Şarkın Olsun
+      </h1>
 
-        <form style={{
-          width: '100%',
-          maxWidth: '500px',
-          background: '#ffffff20',
-          backdropFilter: 'blur(10px)',
-          padding: '1.5rem',
+      <form name="contact" method="POST" data-netlify="true"
+        style={{
+          backgroundColor: '#ffffffdd',
+          padding: '24px',
           borderRadius: '16px',
+          width: '100%',
+          maxWidth: '400px',
+          boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '1rem',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
-        }} name="hikayeForm" method="POST" data-netlify="true">
-          <input name="ad" placeholder="Adınız" required style={inputStyle} />
-          <input name="email" placeholder="E-posta" type="email" required style={inputStyle} />
-          <textarea name="hikaye" placeholder="Tanışma hikayeniz" rows={4} required style={inputStyle} />
-          <textarea name="ozel" placeholder="Şarkıda geçmesini istediğiniz özel bir şey var mı?" rows={2} style={inputStyle} />
-          <button type="submit" style={{
-            padding: '1rem',
-            border: 'none',
-            borderRadius: '8px',
-            backgroundColor: '#ff6f91',
-            color: '#fff',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            fontSize: '1rem'
-          }}>
-            Gönder
-          </button>
-        </form>
+          gap: '12px'
+        }}>
+        <input type="hidden" name="form-name" value="contact" />
+        <input name="name" placeholder="Adınız" required style={inputStyle} />
+        <input name="email" type="email" placeholder="E-posta" required style={inputStyle} />
+        <textarea name="story" placeholder="Tanışma hikayeniz" rows="3" required style={inputStyle}></textarea>
+        <textarea name="extra" placeholder="Şarkıda geçmesini istediğiniz özel bir şey?" rows="2" style={inputStyle}></textarea>
+        <button type="submit" style={{
+          padding: '10px',
+          borderRadius: '8px',
+          border: 'none',
+          backgroundColor: '#ff6584',
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: '15px',
+          cursor: 'pointer'
+        }}>Gönder</button>
+      </form>
 
-        <div style={{ marginTop: '3rem', width: '100%', textAlign: 'center' }}>
-          <h2>🎧 Örnek Şarkı</h2>
-          <audio controls style={{ width: '100%', maxWidth: '500px', marginTop: '1rem' }}>
-            <source src="/sarki.mp3" type="audio/mpeg" />
-            Tarayıcınız bu ses öğesini desteklemiyor.
-          </audio>
-        </div>
+      <div style={{
+        marginTop: '30px',
+        backgroundColor: '#ffffff22',
+        borderRadius: '12px',
+        padding: '16px',
+        width: '100%',
+        maxWidth: '400px',
+        color: 'white',
+        textAlign: 'center'
+      }}>
+        <h3>🎧 Örnek Şarkı</h3>
+        <audio controls style={{ width: '100%' }}>
+          <source src="/Kaderincilvesi.mp3" type="audio/mpeg" />
+          Tarayıcınız ses çalmayı desteklemiyor.
+        </audio>
       </div>
-    </>
+    </div>
   );
 }
 
 const inputStyle = {
-  padding: '0.8rem',
-  borderRadius: '8px',
+  padding: '10px',
+  fontSize: '14px',
+  borderRadius: '6px',
   border: '1px solid #ccc',
-  fontSize: '1rem',
-  width: '100%'
+  boxSizing: 'border-box',
+  width: '100%',
+  resize: 'vertical'
 };
