@@ -1,11 +1,15 @@
+// pages/api/submit.js
+
 export default function handler(req, res) {
-  if (req.method === "POST") {
-    const { name, email, story, extra } = req.body;
+  if (req.method === 'POST') {
+    const { name, email, story, specialRequest } = req.body;
 
-    console.log("Form verisi alındı:", { name, email, story, extra });
+    // Basit bir işlem örneği
+    console.log("Form gönderildi:", { name, email, story, specialRequest });
 
-    res.status(200).json({ message: "Mesaj başarıyla gönderildi!" });
+    res.status(200).json({ message: 'Form başarıyla gönderildi' });
   } else {
-    res.status(405).json({ message: "Sadece POST isteklerine izin verilir." });
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
